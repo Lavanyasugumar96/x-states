@@ -29,6 +29,7 @@ const LocationSelector = () => {
     setSelectedCountry(country);
     setSelectedState("");
     setSelectedCity("");
+
     try {
       const response = await axios.get(
         `https://crio-location-selector.onrender.com/country=${country}/states`
@@ -42,6 +43,7 @@ const LocationSelector = () => {
   const handleStateChange = async (state) => {
     setSelectedState(state);
     setSelectedCity("");
+
     try {
       const response = await axios.get(
         `https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${state}/cities`
@@ -60,7 +62,6 @@ const LocationSelector = () => {
     <div className="location-selector">
       <h2>Select Location</h2>
       <div className="dropdown-group">
-        {/* Country Dropdown */}
         <select
           value={selectedCountry}
           onChange={(e) => handleCountryChange(e.target.value)}
@@ -75,7 +76,6 @@ const LocationSelector = () => {
           ))}
         </select>
 
-        {/* State Dropdown */}
         <select
           value={selectedState}
           onChange={(e) => handleStateChange(e.target.value)}
@@ -91,7 +91,6 @@ const LocationSelector = () => {
           ))}
         </select>
 
-        {/* City Dropdown */}
         <select
           value={selectedCity}
           onChange={(e) => handleCityChange(e.target.value)}
@@ -110,7 +109,7 @@ const LocationSelector = () => {
 
       {selectedCity && selectedState && selectedCountry && (
         <p>
-          You Selected {selectedCity}, {selectedState}, {selectedCountry}
+           <strong>You Selected {selectedCity}</strong>, {selectedState}, {selectedCountry}
         </p>
       )}
     </div>
